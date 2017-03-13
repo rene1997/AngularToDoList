@@ -74,9 +74,8 @@ module.exports = {
                 todo.count({}, function(err, count){
                     var newTodo = new todo({userId:userId, note:todoString, todoId:count});
                     newTodo.save(function(err){
-                        if(err) callback(console.log(err));
-                        callback(console.log(newTodo));
-
+                        if(err) callback({"status":err});
+                        else callback(newTodo);
                     })
                 });
             });

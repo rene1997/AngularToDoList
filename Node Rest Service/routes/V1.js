@@ -34,6 +34,8 @@ router.post('/addToDo', function(req,res){
    var userId = req.body.userId;
    var todoString = req.body.todo;
    database.addTodo(userId, todoString, function(todoData){
+       console.log("got:");
+       console.log(todoData);
        res.json(todoData);
    })
 });
