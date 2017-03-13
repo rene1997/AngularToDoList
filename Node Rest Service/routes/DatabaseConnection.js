@@ -64,6 +64,14 @@ module.exports = {
                 });
            });
         });
+    },
+
+    addTodo : function(userId, todoString, callback) {
+        connectTodo(function(todo){
+            todo.find({}, function (err,data){
+                console.log(data);
+            });
+        });
     }
 }
 

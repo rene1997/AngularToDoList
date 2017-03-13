@@ -26,10 +26,19 @@ router.post('/adduser', function(req,res){
     var username = req.body.username;
     var password = req.body.password;
     database.addUser(username, password, function(userdata){
-        console.log(userdata);
         res.json(userdata);
     });
 });
+
+router.post('/addToDo', function(req,res){
+   var userId = req.body.userId;
+   var todoString = req.body.todo;
+   database.addTodo(userId, todoString, function(todoData){
+       res.json(todoData);
+   })
+});
+
+
 
  //all unknown calls:
 router.get('*', function(req,res){
