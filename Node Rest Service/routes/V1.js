@@ -30,7 +30,7 @@ router.post('/adduser', function(req,res){
     });
 });
 
-router.post('/addToDo', function(req,res){
+router.post('/addtodo', function(req,res){
    var userId = req.body.userId;
    var todoString = req.body.todo;
    database.addTodo(userId, todoString, function(todoData){
@@ -41,14 +41,21 @@ router.post('/addToDo', function(req,res){
 });
 
 
-router.post('/completeToDo', function(req,res){
+router.post('/completetodo', function(req,res){
     var userId = req.body.userId;
     var todoId = req.body.todoId;
     var isCompleted = req.body.isCompleted;
     database.completeTodo(userId,todoId,isCompleted,function (data){
        res.json(data);
     });
-})
+});
+
+router.post('/gettodos', function(req,res){
+   var userId = req.body.userId;
+   database.getTodos(userId,function(data){
+      res.json(data);
+   });
+});
 
  //all unknown calls:
 router.get('*', function(req,res){

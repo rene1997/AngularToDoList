@@ -85,6 +85,15 @@ module.exports = {
                 else callback(data);
             });
         });
+    },
+
+    getTodos : function (userId, callback) {
+        connectTodo(function (todo) {
+            todo.find({userId: userId}, function(err, data){
+                if(err) callback({status:err});
+                else callback(data);
+            });
+        });
     }
 }
 
