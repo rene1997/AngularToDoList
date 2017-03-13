@@ -69,7 +69,7 @@ module.exports = {
     addTodo : function(userId, todoString, callback) {
         connectTodo(function(todo){
             todo.count({}, function(err, count){
-                var newTodo = new todo({userId:userId, note:todoStrong, todoId:count});
+                var newTodo = new todo({userId:userId, note:todoString, todoId:count});
                 newTodo.save(function(err){
                     if(err) return console.log(err);
                     else return console.log(newTodo);
