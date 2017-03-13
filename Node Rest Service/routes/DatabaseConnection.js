@@ -80,7 +80,7 @@ module.exports = {
 
     completeTodo : function(userId, todoId, isCompleted, callback){
         connectTodo(function (todo) {
-            todo.find ({userId:userId, todoId: todoId}, {$set:{completed:isCompleted}},function(err, data){
+            todo.update ({userId:userId, todoId: todoId}, {$set:{completed:isCompleted}},function(err, data){
                 if(err) callback({status: err});
                 else callback(data);
             });
