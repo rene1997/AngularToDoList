@@ -12,7 +12,7 @@ var UserSchema = new mongoose.Schema({
 
 var ToDoSchema = new mongoose.Schema({
     userId: Number,
-    completed: Boolean,
+    completed: {type : Boolean, default: false},
     note: String,
     todoId: Number,
     updated_at: { type: Date, default: Date.now },
