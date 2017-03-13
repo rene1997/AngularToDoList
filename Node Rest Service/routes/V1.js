@@ -41,6 +41,14 @@ router.post('/addToDo', function(req,res){
 });
 
 
+router.post('/completeToDo', function(req,res){
+    var userId = req.body.userId;
+    var todoId = req.body.todoId;
+    var isCompleted = req.body.isCompleted;
+    database.completeTodo(userId,todoId,isCompleted,function (data){
+       res.json(data);
+    });
+})
 
  //all unknown calls:
 router.get('*', function(req,res){

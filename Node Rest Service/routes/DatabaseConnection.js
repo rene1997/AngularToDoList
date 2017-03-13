@@ -68,9 +68,6 @@ module.exports = {
 
     addTodo : function(userId, todoString, callback) {
         connectTodo(function(todo){
-            todo.find({}, function (err,data){
-                console.log("all todos:");
-                console.log(data);
                 todo.count({}, function(err, count){
                     var newTodo = new todo({userId:userId, note:todoString, todoId:count});
                     newTodo.save(function(err){
@@ -79,8 +76,14 @@ module.exports = {
                     })
                 });
             });
+    },
 
-
+    completeTodo : function(userId, todoId, isCompleted, callback){
+        connectTodo(function (todo) {
+            todo.find ({userId:userId, todoId: todoId}, {$set:{completed:isCompleted}},function(err, data){
+                if(err) callback({status: err});
+                else callback(data);
+            });
         });
     }
 }
