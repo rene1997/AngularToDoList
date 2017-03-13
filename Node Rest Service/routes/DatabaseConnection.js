@@ -11,9 +11,10 @@ var UserSchema = new mongoose.Schema({
 });
 
 var ToDoSchema = new mongoose.Schema({
-    name: String,
+    userId: Number,
     completed: Boolean,
     note: String,
+    todoId: Number,
     updated_at: { type: Date, default: Date.now },
 });
 
@@ -55,7 +56,6 @@ module.exports = {
     addUser : function(username, password, callback){
         connectUser(function(user){
            user.count({}, function(err, count){
-                console.log("amount: " + count);
                 var newUser = new user({userId:count, userName:username, password:password});
                 newUser.save(function (err) {
                     if(err) console.log(err);
@@ -68,9 +68,19 @@ module.exports = {
 
     addTodo : function(userId, todoString, callback) {
         connectTodo(function(todo){
-            todo.find({}, function (err,data){
-                console.log(data);
+            todo.count({}, function(err, count){
+                var newTodo = new todo({userId:userId, note:todoStrong, todoId:count});
+                newTodo.save(function(err){
+                    if(err) return console.log(err);
+                    else return console.log(newTodo);
+
+                    todo.find({}, function (err,data){
+                        console.log("all todos:");
+                        console.log(data);
+                    });
+                })
             });
+
         });
     }
 }
