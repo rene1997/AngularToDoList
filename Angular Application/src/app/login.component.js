@@ -9,20 +9,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var AppComponent = (function () {
-    function AppComponent() {
-        this.title = 'ToDoList';
+var router_1 = require('@angular/router');
+var LoginComponent = (function () {
+    function LoginComponent(route, router) {
+        this.route = route;
+        this.router = router;
     }
-    AppComponent = __decorate([
+    LoginComponent.prototype.ngOnInit = function () {
+    };
+    LoginComponent.prototype.login = function () {
+        this.router.navigate(['todolist']);
+    };
+    LoginComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'my-app',
-            template: "\n    <h1>{{title}}</h1>\n    <!--<nav>\n      <a routerLink=\"/login\" routerLinkActive=\"active\">Login</a>\n    </nav>-->\n    <router-outlet></router-outlet>",
-            styleUrls: ['./app.component.css']
+            selector: 'login',
+            templateUrl: './login.component.html',
+            styleUrls: ['./login.component.css']
         }), 
-        __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+        __metadata('design:paramtypes', [router_1.ActivatedRoute, router_1.Router])
+    ], LoginComponent);
+    return LoginComponent;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.LoginComponent = LoginComponent;
+//# sourceMappingURL=login.component.js.map

@@ -14,21 +14,23 @@ var forms_1 = require('@angular/forms');
 var http_1 = require('@angular/http');
 var app_routing_module_1 = require('./app-routing.module');
 var app_component_1 = require('./app.component');
-var dashboard_component_1 = require('./dashboard.component');
+var login_component_1 = require('./login.component');
+var register_component_1 = require('./register.component');
+var todolist_component_1 = require('./todolist.component');
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [
-                platform_browser_1.BrowserModule,
-                forms_1.FormsModule,
+            imports: [platform_browser_1.BrowserModule,
                 http_1.HttpModule,
-                app_routing_module_1.AppRoutingModule
+                app_routing_module_1.AppRoutingModule,
+                forms_1.FormsModule
             ],
-            declarations: [
-                app_component_1.AppComponent,
-                dashboard_component_1.DashboardComponent,
+            declarations: [app_component_1.AppComponent,
+                login_component_1.LoginComponent,
+                register_component_1.RegisterComponent,
+                todolist_component_1.TodoListComponent
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

@@ -9,21 +9,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var DashboardComponent = (function () {
-    function DashboardComponent() {
+var router_1 = require('@angular/router');
+var RegisterComponent = (function () {
+    function RegisterComponent(route, router) {
+        this.route = route;
+        this.router = router;
     }
-    DashboardComponent.prototype.ngOnInit = function () {
+    RegisterComponent.prototype.ngOnInit = function () {
     };
-    DashboardComponent = __decorate([
+    RegisterComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'my-dashboard',
-            templateUrl: './dashboard.component.html',
-            styleUrls: ['./dashboard.component.css']
+            selector: 'register',
+            templateUrl: './register.component.html',
+            styleUrls: ['./register.component.css']
         }), 
-        __metadata('design:paramtypes', [])
-    ], DashboardComponent);
-    return DashboardComponent;
+        __metadata('design:paramtypes', [router_1.ActivatedRoute, router_1.Router])
+    ], RegisterComponent);
+    return RegisterComponent;
 }());
-exports.DashboardComponent = DashboardComponent;
-//# sourceMappingURL=dashboard.component.js.map
+exports.RegisterComponent = RegisterComponent;
+//# sourceMappingURL=register.component.js.map
