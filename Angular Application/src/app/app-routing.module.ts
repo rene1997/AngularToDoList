@@ -1,10 +1,14 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { DashboardComponent }   from './dashboard.component';
+import {LoginComponent} from './login.component';
+import {RegisterComponent} from './register.component';
+import{TodoListComponent} from './todolist.component';
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'dashboard',  component: DashboardComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path:'login', component:LoginComponent},
+  { path:'register',component:RegisterComponent},
+  { path:'todolist',component:TodoListComponent}
 ];
 
 @NgModule({

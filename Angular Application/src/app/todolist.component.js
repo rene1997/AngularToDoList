@@ -9,20 +9,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var AppComponent = (function () {
-    function AppComponent() {
-        this.title = 'ToDoList';
+var router_1 = require('@angular/router');
+var TodoListComponent = (function () {
+    function TodoListComponent(route, router) {
+        this.route = route;
+        this.router = router;
     }
-    AppComponent = __decorate([
+    TodoListComponent.prototype.ngOnInit = function () {
+    };
+    TodoListComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'my-app',
-            template: "\n    <h1>{{title}}</h1>\n    <!--<nav>\n      <a routerLink=\"/login\" routerLinkActive=\"active\">Login</a>\n    </nav>-->\n    <router-outlet></router-outlet>",
-            styleUrls: ['./app.component.css']
+            selector: 'todolist',
+            templateUrl: './todolist.component.html',
+            styleUrls: ['./todolist.component.css']
         }), 
-        __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+        __metadata('design:paramtypes', [router_1.ActivatedRoute, router_1.Router])
+    ], TodoListComponent);
+    return TodoListComponent;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.TodoListComponent = TodoListComponent;
+//# sourceMappingURL=todolist.component.js.map

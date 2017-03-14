@@ -10,10 +10,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var dashboard_component_1 = require('./dashboard.component');
+var login_component_1 = require('./login.component');
+var register_component_1 = require('./register.component');
+var todolist_component_1 = require('./todolist.component');
 var routes = [
-    { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-    { path: 'dashboard', component: dashboard_component_1.DashboardComponent },
+    { path: '', redirectTo: '/login', pathMatch: 'full' },
+    { path: 'login', component: login_component_1.LoginComponent },
+    { path: 'register', component: register_component_1.RegisterComponent },
+    { path: 'todolist', component: todolist_component_1.TodoListComponent }
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {
