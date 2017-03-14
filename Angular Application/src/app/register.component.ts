@@ -38,12 +38,13 @@ export class RegisterComponent implements OnInit{
         err   =>this.handleError(err),
         () =>console.log("Register request complete")
 
-    )
+    );
   }
 
   registerResponse(res: Response){
     console.info(res['_body']);
     this.router.navigate(['login']);
+
   }
 
   handleError(error: Response){
