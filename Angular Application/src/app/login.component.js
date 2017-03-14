@@ -11,23 +11,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var http_1 = require('@angular/http');
-var Rx_1 = require("rxjs/Rx");
-require('rxjs/add/operator/map');
-require('rxjs/add/operator/catch');
 var http_2 = require('@angular/http');
 var LoginComponent = (function () {
     function LoginComponent(route, router, http) {
         this.route = route;
         this.router = router;
         this.http = http;
-        this.serverUrl = "http://87.195.159.225:8081/apiV1";
         this.loginUrl = "http://87.195.159.225:8081/apiV1/login";
     }
     LoginComponent.prototype.ngOnInit = function () {
     };
     LoginComponent.prototype.login = function () {
         var _this = this;
-        console.log('trying to login to ' + this.loginUrl);
+        console.log('trying to login to ');
         var headers = new http_2.Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
         var options = new http_2.RequestOptions({ headers: headers });
         var urlSearchParams = new http_2.URLSearchParams();
@@ -35,25 +31,14 @@ var LoginComponent = (function () {
         urlSearchParams.append('password', this.password);
         urlSearchParams.append('serverKey', '175d6c2c2632e0f87a07f32e88a690104f921b517c7af1c6333de2dfad9be8e3');
         var body = urlSearchParams.toString();
-        return this.http.post(this.loginUrl, body, options)
-            .subscribe(function (data) { return _this.loginResponse(data); }, function (err) { return _this.handleError(err); }, function () { return console.log('Random Quote Complete'); });
+        return this.http.post(this.loginUrl, body, options).subscribe(function (data) { return _this.loginResponse(data); }, function (err) { return _this.handleError(err); }, function () { return console.log('Random Quote Complete'); });
     };
     LoginComponent.prototype.loginResponse = function (res) {
-        console.log("keimooi!!!");
-        console.info(res);
+        console.info(res['_body']);
         this.router.navigate(['todolist']);
     };
     LoginComponent.prototype.handleError = function (error) {
-        console.log("error!!");
-        console.info(error);
-        var errMsg;
-        if (error instanceof http_1.Response) {
-            var body = error.json() || '';
-            var err = body.error || JSON.stringify(body);
-            errMsg = error.status + " - " + (error.statusText || '') + " " + err;
-        }
-        console.error(errMsg);
-        return Rx_1.Observable.throw(errMsg);
+        console.info(error.toString());
     };
     LoginComponent = __decorate([
         core_1.Component({
