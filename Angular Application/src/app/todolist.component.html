@@ -11,4 +11,12 @@
 </div>
 <div></div>
 <ul class="list-unstyled" id="todo"></ul>
+<ul class="todos">
+  <li *ngFor="let todo of todos">
+    <input type="checkbox" [(ngModel)]="todo.completed"/>
+    <span class="badge">{{todo.note}}</span>
+
+  </li>
+</ul>
+
 </body>

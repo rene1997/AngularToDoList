@@ -11,7 +11,7 @@ import { Headers, RequestOptions, URLSearchParams } from '@angular/http';
 })
 
 export class RegisterComponent implements OnInit{
-  private registerUrl= "http://87.195.159.225:8081/apiV1/adduser";
+  private registerUrl= "http://87.195.159.225:8081/apiV1/gettodos";
 
   constructor(
     private route:ActivatedRoute,
@@ -37,13 +37,14 @@ export class RegisterComponent implements OnInit{
     return this.http.post(this.registerUrl, body, options).subscribe(
         data  =>this.registerResponse(data),
         err   =>this.handleError(err),
-        () =>console.log("Register request complete")
-    )
+        () =>console.log("todos received")
+    );
   }
 
   registerResponse(res: Response){
     console.info(res['_body']);
     this.router.navigate(['login']);
+
   }
 
   handleError(error: Response){
