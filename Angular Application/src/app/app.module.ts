@@ -5,8 +5,6 @@ import { HttpModule, JsonpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 
 
-
-
 import { AppComponent }  from './app.component';
 import {LoginComponent}  from'./login.component';
 import {RegisterComponent} from'./register.component';
