@@ -4,8 +4,8 @@
   <div class="login-page">
     <div class="form">
       <form class="login-form">
-        <input #username placeholder="username"/>
-        <input #password placeholder="password"/>
+        <input #username placeholder="username" required/>
+        <input #password placeholder="password" required/>
         <button (click)="login(username.value,password.value)">login</button>
         <p class="message">Not registered? <a [routerLink]="['/register']" >Create an account</a></p>
       </form>

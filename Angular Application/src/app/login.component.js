@@ -12,12 +12,14 @@ var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var http_1 = require('@angular/http');
 var http_2 = require('@angular/http');
+var collection_1 = require("@angular/router/src/utils/collection");
 var LoginComponent = (function () {
     function LoginComponent(route, router, http) {
         this.route = route;
         this.router = router;
         this.http = http;
         this.loginUrl = "http://87.195.159.225:8081/apiV1/login";
+        this.logged = false;
     }
     LoginComponent.prototype.ngOnInit = function () {
     };
@@ -31,10 +33,16 @@ var LoginComponent = (function () {
         urlSearchParams.append('password', password);
         urlSearchParams.append('serverKey', '175d6c2c2632e0f87a07f32e88a690104f921b517c7af1c6333de2dfad9be8e3');
         var body = urlSearchParams.toString();
+        this.logged = true;
         return this.http.post(this.loginUrl, body, options).subscribe(function (data) { return _this.loginResponse(data); }, function (err) { return _this.handleError(err); }, function () { return console.log('Random Quote Complete'); });
     };
     LoginComponent.prototype.loginResponse = function (res) {
-        console.info(res['_body']);
+        console.info("test: " + res['status']);
+        console.info("test2: " + res['_body']);
+        var values = JSON.parse(res['_body']);
+        collection_1.forEach(values, function (value, key) {
+            console.log("key: " + key + ': ' + "value: " + value);
+        });
         this.router.navigate(['todolist']);
     };
     LoginComponent.prototype.handleError = function (error) {
