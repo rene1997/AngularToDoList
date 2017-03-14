@@ -31,8 +31,8 @@ var LoginComponent = (function () {
         var headers = new http_2.Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
         var options = new http_2.RequestOptions({ headers: headers });
         var urlSearchParams = new http_2.URLSearchParams();
-        urlSearchParams.append('username', 'rene');
-        urlSearchParams.append('password', 'wachtwoordje');
+        urlSearchParams.append('username', this.username);
+        urlSearchParams.append('password', this.password);
         urlSearchParams.append('serverKey', '175d6c2c2632e0f87a07f32e88a690104f921b517c7af1c6333de2dfad9be8e3');
         var body = urlSearchParams.toString();
         return this.http.post(this.loginUrl, body, options)

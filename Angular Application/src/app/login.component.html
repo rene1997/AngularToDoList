@@ -4,8 +4,8 @@
   <div class="login-page">
     <div class="form">
       <form class="login-form">
-        <input type="text" ng-model="username" placeholder="username"/>
-        <input type="password" ng-model="password" placeholder="password"/>
+        <input id="Username" type="text" ng-model="username" placeholder="username"/>
+        <input id = "Password" type="password" ng-model="password" placeholder="password"/>
         <button (click)="login()">login</button>
         <p class="message">Not registered? <a [routerLink]="['/register']" >Create an account</a></p>
       </form>

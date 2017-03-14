@@ -16,6 +16,8 @@ import { Headers, RequestOptions, URLSearchParams } from '@angular/http';
 })
 
 export class LoginComponent implements OnInit{
+  username:string;
+  password:string;
   constructor(
     private route:ActivatedRoute,
     private router:Router,
@@ -37,8 +39,8 @@ export class LoginComponent implements OnInit{
     let options = new RequestOptions({ headers: headers });
 
     let urlSearchParams = new URLSearchParams();
-    urlSearchParams.append('username', 'rene');
-    urlSearchParams.append('password', 'wachtwoordje');
+    urlSearchParams.append('username', this.username);
+    urlSearchParams.append('password',this.password);
     urlSearchParams.append('serverKey', '175d6c2c2632e0f87a07f32e88a690104f921b517c7af1c6333de2dfad9be8e3');
 
     let body = urlSearchParams.toString()
