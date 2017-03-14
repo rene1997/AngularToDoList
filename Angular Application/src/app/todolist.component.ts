@@ -17,6 +17,7 @@ export class ToDo{
 
 export class TodoListComponent implements OnInit{
   private gettodoUrls= "http://87.195.159.225:8081/apiV1/gettodos";
+  private addTodoUrl= "http://87.195.159.225:8081/apiV1/addtodo";
 
   private todos :ToDo[];
   constructor(
@@ -55,5 +56,28 @@ export class TodoListComponent implements OnInit{
 
   handleError(error: Response){
     console.info(error.toString());
+  }
+
+  addTodo(note: string){
+    console.log(note);
+    console.log("trying to add todo to sserver..");
+    let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
+    let options = new RequestOptions({headers:headers});
+    let urlSearchParams = new URLSearchParams();
+    urlSearchParams.append('userId', '0');
+    urlSearchParams.append('todo', note);
+    urlSearchParams.append('serverKey', '175d6c2c2632e0f87a07f32e88a690104f921b517c7af1c6333de2dfad9be8e3');
+    let body = urlSearchParams.toString();
+
+    return this.http.post(this.addTodoUrl, body, options).subscribe(
+        data  =>this.handleAddedTodo(data),
+        err   =>this.handleError(err),
+        () =>console.log("Register request complete")
+    )
+  }
+
+  handleAddedTodo(data: String){
+    console.log(data);
+    this.getToDos();
   }
 }

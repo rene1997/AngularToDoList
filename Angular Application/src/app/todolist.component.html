@@ -5,9 +5,9 @@
 <body>
 <div class="form-group">
   <form role="form">
-    <input type="text" class="form-control" placeholder="todo" name="todo">
+    <input #todoNote type="text" class="form-control" placeholder="todo" name="todo">
   </form>
-  <button type="button" class="btn btn btn-primary">add</button>
+  <button (click)="addTodo(todoNote.value)" type="button" class="btn btn btn-primary">add</button>
 </div>
 <div></div>
 <ul class="list-unstyled" id="todo"></ul>
