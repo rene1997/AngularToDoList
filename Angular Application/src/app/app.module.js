@@ -25,7 +25,8 @@ var AppModule = (function () {
             imports: [platform_browser_1.BrowserModule,
                 http_1.HttpModule,
                 app_routing_module_1.AppRoutingModule,
-                forms_1.FormsModule
+                forms_1.FormsModule,
+                http_1.JsonpModule
             ],
             declarations: [app_component_1.AppComponent,
                 login_component_1.LoginComponent,
