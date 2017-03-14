@@ -19,6 +19,12 @@ app.all('*', function(req,res,next){
         res.json({status:"no permission!"});
         return;
     }
+    //Access-Control-Allow-Headers: Content-Type
+    //Access-Control-Allow-Methods: GET, POST, OPTIONS
+    //Access-Control-Allow-Origin: *
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    res.header('Access-Control-Allow-Origin', '*');
     next();
 });
 

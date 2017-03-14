@@ -5,7 +5,7 @@ import { Http, Response }          from '@angular/http';
 import {Observable} from "rxjs/Rx";
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/catch'
-import { Headers, RequestOptions } from '@angular/http';
+import { Headers, RequestOptions, URLSearchParams } from '@angular/http';
 
 
 @Component({
@@ -22,8 +22,8 @@ export class LoginComponent implements OnInit{
     private http:Http
   ){}
 
-  private serverUrl = "http://192.168.1.32:8081/apiV1";
-  private loginUrl = this.serverUrl + "/login";
+  private serverUrl = "http://87.195.159.225:8081/apiV1";
+  private loginUrl = "http://87.195.159.225:8081/apiV1/login";
 
 
   ngOnInit() {
@@ -32,24 +32,28 @@ export class LoginComponent implements OnInit{
 
   login(){
     console.log('trying to login to ' + this.loginUrl);
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
-    let jsonBody =
-    {
-      serverKey: '175d6c2c2632e0f87a07f32e88a690104f921b517c7af1c6333de2dfad9be8e3',
-      username: 'rene',
-      password: 'wachtwoordje'
-    };
 
-    return this.http.post(this.loginUrl,jsonBody, options)
-        .map(this.loginResponse)
-        .catch(this.handleError);
-    //this.router.navigate(['todolist']);
+    let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded'});
+    let options = new RequestOptions({ headers: headers });
+
+    let urlSearchParams = new URLSearchParams();
+    urlSearchParams.append('username', 'rene');
+    urlSearchParams.append('password', 'wachtwoordje');
+    urlSearchParams.append('serverKey', '175d6c2c2632e0f87a07f32e88a690104f921b517c7af1c6333de2dfad9be8e3');
+
+    let body = urlSearchParams.toString()
+
+
+    return this.http.post(this.loginUrl,body, options)
+        .subscribe(      data => this.loginResponse(data),
+            err => this.handleError(err),
+            () => console.log('Random Quote Complete'))
   }
 
   loginResponse(res: Response){
     console.log("keimooi!!!");
     console.info(res);
+    this.router.navigate(['todolist']);
   }
 
   handleError(error:Response){

@@ -20,28 +20,28 @@ var LoginComponent = (function () {
         this.route = route;
         this.router = router;
         this.http = http;
-        this.serverUrl = "http://192.168.1.32:8081/apiV1";
-        this.loginUrl = this.serverUrl + "/login";
+        this.serverUrl = "http://87.195.159.225:8081/apiV1";
+        this.loginUrl = "http://87.195.159.225:8081/apiV1/login";
     }
     LoginComponent.prototype.ngOnInit = function () {
     };
     LoginComponent.prototype.login = function () {
+        var _this = this;
         console.log('trying to login to ' + this.loginUrl);
-        var headers = new http_2.Headers({ 'Content-Type': 'application/json' });
+        var headers = new http_2.Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
         var options = new http_2.RequestOptions({ headers: headers });
-        var jsonBody = {
-            serverKey: '175d6c2c2632e0f87a07f32e88a690104f921b517c7af1c6333de2dfad9be8e3',
-            username: 'rene',
-            password: 'wachtwoordje'
-        };
-        return this.http.post(this.loginUrl, jsonBody, options)
-            .map(this.loginResponse)
-            .catch(this.handleError);
-        //this.router.navigate(['todolist']);
+        var urlSearchParams = new http_2.URLSearchParams();
+        urlSearchParams.append('username', 'rene');
+        urlSearchParams.append('password', 'wachtwoordje');
+        urlSearchParams.append('serverKey', '175d6c2c2632e0f87a07f32e88a690104f921b517c7af1c6333de2dfad9be8e3');
+        var body = urlSearchParams.toString();
+        return this.http.post(this.loginUrl, body, options)
+            .subscribe(function (data) { return _this.loginResponse(data); }, function (err) { return _this.handleError(err); }, function () { return console.log('Random Quote Complete'); });
     };
     LoginComponent.prototype.loginResponse = function (res) {
         console.log("keimooi!!!");
         console.info(res);
+        this.router.navigate(['todolist']);
     };
     LoginComponent.prototype.handleError = function (error) {
         console.log("error!!");
