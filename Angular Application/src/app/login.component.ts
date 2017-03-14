@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Injectable }              from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Http, Response }          from '@angular/http';
-import {Observable} from "rxjs/Rx";
-import 'rxjs/add/operator/map'
-import 'rxjs/add/operator/catch'
 import { Headers, RequestOptions, URLSearchParams } from '@angular/http';
 
 
@@ -16,23 +12,19 @@ import { Headers, RequestOptions, URLSearchParams } from '@angular/http';
 })
 
 export class LoginComponent implements OnInit{
+  private loginUrl = "http://87.195.159.225:8081/apiV1/login";
+
   constructor(
     private route:ActivatedRoute,
     private router:Router,
     private http:Http
   ){}
 
-  private serverUrl = "http://87.195.159.225:8081/apiV1";
-  private loginUrl = "http://87.195.159.225:8081/apiV1/login";
-
-
   ngOnInit() {
-
   }
 
   login(){
-    console.log('trying to login to ' + this.loginUrl);
-
+    console.log('trying to login to ');
     let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded'});
     let options = new RequestOptions({ headers: headers });
 
@@ -43,29 +35,18 @@ export class LoginComponent implements OnInit{
 
     let body = urlSearchParams.toString()
 
-
-    return this.http.post(this.loginUrl,body, options)
-        .subscribe(      data => this.loginResponse(data),
+    return this.http.post(this.loginUrl,body, options).subscribe(
+            data => this.loginResponse(data),
             err => this.handleError(err),
             () => console.log('Random Quote Complete'))
   }
 
   loginResponse(res: Response){
-    console.log("keimooi!!!");
-    console.info(res);
+    console.info(res['_body']);
     this.router.navigate(['todolist']);
   }
 
   handleError(error:Response){
-    console.log("error!!");
-    console.info(error);
-    let errMsg: string;
-    if (error instanceof Response) {
-      const body = error.json() || '';
-      const err = body.error || JSON.stringify(body);
-      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-    }
-    console.error(errMsg);
-    return Observable.throw(errMsg);
+    console.info(error.toString());
   }
 }
