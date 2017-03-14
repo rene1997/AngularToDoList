@@ -11,8 +11,7 @@ import { Headers, RequestOptions, URLSearchParams } from '@angular/http';
 })
 
 export class RegisterComponent implements OnInit{
-  private registerUrl= "http://87.195.159.225:8081/apiV1/gettodos";
-
+  private registerUrl= "http://87.195.159.225:8081/apiV1/adduser";
   constructor(
     private route:ActivatedRoute,
     private router:Router,
@@ -23,21 +22,22 @@ export class RegisterComponent implements OnInit{
 
   }
 
-  register(){
+  register(username:string,password:string){
     console.log("trying to regiser:");
     let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded'});
     let options = new RequestOptions({ headers: headers });
 
     let urlSearchParams = new URLSearchParams();
-    urlSearchParams.append('username', 'paul');
-    urlSearchParams.append('password', 'wachtwoord2');
+    urlSearchParams.append('username',username);
+    urlSearchParams.append('password',password);
     urlSearchParams.append('serverKey', '175d6c2c2632e0f87a07f32e88a690104f921b517c7af1c6333de2dfad9be8e3');
     let body = urlSearchParams.toString()
 
     return this.http.post(this.registerUrl, body, options).subscribe(
         data  =>this.registerResponse(data),
         err   =>this.handleError(err),
-        () =>console.log("todos received")
+        () =>console.log("Register request complete")
+
     );
   }
 

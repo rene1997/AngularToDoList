@@ -21,14 +21,14 @@ var LoginComponent = (function () {
     }
     LoginComponent.prototype.ngOnInit = function () {
     };
-    LoginComponent.prototype.login = function () {
+    LoginComponent.prototype.login = function (username, password) {
         var _this = this;
         console.log('trying to login to ');
         var headers = new http_2.Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
         var options = new http_2.RequestOptions({ headers: headers });
         var urlSearchParams = new http_2.URLSearchParams();
-        urlSearchParams.append('username', this.username);
-        urlSearchParams.append('password', this.password);
+        urlSearchParams.append('username', username);
+        urlSearchParams.append('password', password);
         urlSearchParams.append('serverKey', '175d6c2c2632e0f87a07f32e88a690104f921b517c7af1c6333de2dfad9be8e3');
         var body = urlSearchParams.toString();
         return this.http.post(this.loginUrl, body, options).subscribe(function (data) { return _this.loginResponse(data); }, function (err) { return _this.handleError(err); }, function () { return console.log('Random Quote Complete'); });

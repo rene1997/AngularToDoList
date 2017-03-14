@@ -17,21 +17,21 @@ var RegisterComponent = (function () {
         this.route = route;
         this.router = router;
         this.http = http;
-        this.registerUrl = "http://87.195.159.225:8081/apiV1/gettodos";
+        this.registerUrl = "http://87.195.159.225:8081/apiV1/adduser";
     }
     RegisterComponent.prototype.ngOnInit = function () {
     };
-    RegisterComponent.prototype.register = function () {
+    RegisterComponent.prototype.register = function (username, password) {
         var _this = this;
         console.log("trying to regiser:");
         var headers = new http_2.Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
         var options = new http_2.RequestOptions({ headers: headers });
         var urlSearchParams = new http_2.URLSearchParams();
-        urlSearchParams.append('username', 'paul');
-        urlSearchParams.append('password', 'wachtwoord2');
+        urlSearchParams.append('username', username);
+        urlSearchParams.append('password', password);
         urlSearchParams.append('serverKey', '175d6c2c2632e0f87a07f32e88a690104f921b517c7af1c6333de2dfad9be8e3');
         var body = urlSearchParams.toString();
-        return this.http.post(this.registerUrl, body, options).subscribe(function (data) { return _this.registerResponse(data); }, function (err) { return _this.handleError(err); }, function () { return console.log("todos received"); });
+        return this.http.post(this.registerUrl, body, options).subscribe(function (data) { return _this.registerResponse(data); }, function (err) { return _this.handleError(err); }, function () { return console.log("Register request complete"); });
     };
     RegisterComponent.prototype.registerResponse = function (res) {
         console.info(res['_body']);
