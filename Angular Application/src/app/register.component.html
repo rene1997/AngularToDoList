@@ -4,10 +4,9 @@
   <div class="register-page">
     <div class="form">
       <form class="register-form">
-        <input type="text" placeholder="name"/>
-        <input type="password" placeholder="password"/>
-        <input type="text" placeholder="email address"/>
-        <button (click)="register()">create</button>
+        <input #username placeholder="username"/>
+        <input #password placeholder="password"/>
+        <button (click)="register(username.value,password.value)">create</button>
         <p class="message">Already registered? <a [routerLink]="['/login']" >Sign In</a></p>
       </form>
     </div>
