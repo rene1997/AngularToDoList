@@ -9,14 +9,13 @@
   </form>
   <button (click)="addTodo(todoNote.value)" type="button" class="btn btn btn-primary">add</button>
 </div>
-<div></div>
-<ul class="list-unstyled" id="todo"></ul>
-<ul class="todos">
+<div class="list-styled">
+<ul class="todos" id="todo">
   <li *ngFor="let todo of todos">
-    <input type="checkbox" [(ngModel)]="todo.completed"/>
+    <input type="checkbox" [(ngModel)]="todo.completed" (click)="complete(todo)"/>
     <span class="badge">{{todo.note}}</span>
-
   </li>
 </ul>
+</div>
 
 </body>

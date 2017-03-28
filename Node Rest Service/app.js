@@ -31,6 +31,6 @@ app.all('*', function(req,res,next){
 app.use('/apiV1', version1);
 
 //start server
-var server = app.listen( 8081 , function() {
+var server = app.listen( settings.webPort , function() {
     console.log('Listening server on port ' + server.address().port );
 });

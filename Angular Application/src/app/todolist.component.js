@@ -25,6 +25,7 @@ var TodoListComponent = (function () {
         this.http = http;
         this.gettodoUrls = "http://87.195.159.225:8081/apiV1/gettodos";
         this.addTodoUrl = "http://87.195.159.225:8081/apiV1/addtodo";
+        this.editTodoUrl = "http://keijzersoft.nl:8081/apiV1/completetodo";
     }
     TodoListComponent.prototype.ngOnInit = function () {
         this.getToDos();
@@ -65,6 +66,22 @@ var TodoListComponent = (function () {
     TodoListComponent.prototype.handleAddedTodo = function (data) {
         console.log(data);
         this.getToDos();
+    };
+    TodoListComponent.prototype.complete = function (todo) {
+        var _this = this;
+        console.log("checkbox changed from: ");
+        console.log(todo);
+        console.log('' + todo.todoId);
+        console.log('' + todo.completed);
+        var headers = new http_2.Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+        var options = new http_2.RequestOptions({ headers: headers });
+        var urlSearchParams = new http_2.URLSearchParams();
+        urlSearchParams.append('serverKey', '175d6c2c2632e0f87a07f32e88a690104f921b517c7af1c6333de2dfad9be8e3');
+        urlSearchParams.append('userId', '0');
+        urlSearchParams.append('todoId', '' + todo.todoId);
+        urlSearchParams.append('isCompleted', '' + !todo.completed);
+        var body = urlSearchParams.toString();
+        return this.http.post(this.editTodoUrl, body, options).subscribe(function (data) { return _this.handleAddedTodo(data); }, function (err) { return _this.handleError(err); }, function () { return console.log("check action completed"); });
     };
     TodoListComponent = __decorate([
         core_1.Component({

@@ -8,6 +8,13 @@ form {
   padding-bottom: 25px;
 }
 
+.list-styled{
+  text-align: center;
+  align-content: center;
+  horiz-align: center;
+  alignment: center;
+}
+
 a.close {
   float: right;
 }

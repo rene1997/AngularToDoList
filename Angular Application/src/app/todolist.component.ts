@@ -4,6 +4,7 @@ import { Http, Response }          from '@angular/http';
 import { Headers, RequestOptions, URLSearchParams } from '@angular/http';
 
 export class ToDo{
+  completed:boolean;
   todoId:number;
   note:string;
 }
@@ -18,6 +19,7 @@ export class ToDo{
 export class TodoListComponent implements OnInit{
   private gettodoUrls= "http://87.195.159.225:8081/apiV1/gettodos";
   private addTodoUrl= "http://87.195.159.225:8081/apiV1/addtodo";
+  private editTodoUrl = "http://keijzersoft.nl:8081/apiV1/completetodo";
 
   private todos :ToDo[];
   constructor(
@@ -76,8 +78,27 @@ export class TodoListComponent implements OnInit{
     )
   }
 
-  handleAddedTodo(data: String){
+  handleAddedTodo(data: Response){
     console.log(data);
     this.getToDos();
+  }
+
+  complete(todo:ToDo){
+    console.log("checkbox changed from: "); console.log(todo);
+    console.log('' + todo.todoId);
+    console.log('' + todo.completed);
+    let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
+    let options = new RequestOptions({headers:headers});
+    let urlSearchParams = new URLSearchParams();
+    urlSearchParams.append('serverKey', '175d6c2c2632e0f87a07f32e88a690104f921b517c7af1c6333de2dfad9be8e3');
+    urlSearchParams.append('userId', '0');
+    urlSearchParams.append('todoId', '' + todo.todoId);
+    urlSearchParams.append('isCompleted', '' + !todo.completed);
+    let body = urlSearchParams.toString();
+    return this.http.post(this.editTodoUrl, body, options).subscribe(
+        data  =>this.handleAddedTodo(data),
+        err   =>this.handleError(err),
+        () =>console.log("check action completed")
+    )
   }
 }
